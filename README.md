@@ -9,7 +9,7 @@ This guide assumes a basic level of lua/u programming ability and WOS knowledge!
 	- [API](#api)
 	- [Examples](#examples)
 	- [Practical Usage](#practical-usage)
-- [Advanced](./tutorial/advanced.md)
+- [Advanced](./tutorial/README.md)
 
 
 # Intro
