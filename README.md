@@ -11,25 +11,28 @@ This guide assumes a basic level of lua/u programming ability and WOS knowledge!
 	- [Practical Usage](#practical-usage)
 - [Advanced](./tutorial/README.md)
 
-
 # Intro
 
 ## Wiring
 To allow your code to interact with the game world, you must first obtain a [`PilotObject`](<https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/PilotObject>) instance. 
-To do this, first make sure that you have connected the part to the [`Microcontroller`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Microcontroller) using a [`Port`](<https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Port#Configurables>) _or_ a direct connection _(see Figure 1)_.
+To do this, first make sure that you have connected the part to the [`Microcontroller`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Microcontroller) 
+using a [`Port`](<https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Port#Configurables>) _or_ a direct connection _(see Figure 1)_.
 
 ![Figure 1](https://files.catbox.moe/9ayk5u.png)
 
-You can also extend the range of the microcontroller / ports by using [`EthernetCable(s)`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/EthernetCable) _(see Figure 2)_.
+You can also extend the range of the microcontroller / ports by using 
+[`EthernetCable(s)`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/EthernetCable) _(see Figure 2)_.
 
 ![Figure 2](https://files.catbox.moe/gtj8ay.png)
 
-If your build requires connections which are not practical to link with wiring, you can use [`Routers`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Router) as a wireless bridge _(see Figure 3)_.
+If your build requires connections which are not practical to link with wiring, 
+you can use [`Routers`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Router) as a wireless bridge _(see Figure 3)_.
 
 ![Figure 3](https://files.catbox.moe/eupfeo.png)
 
 ## API
-There are four main methods for getting parts: `GetPart`, `GetParts`, `GetPartFromPort`, and `GetPartsFromPort`. The plural variations will return an array instead of a single part. These methods are global in all microcontroller code execution sandboxes.
+There are four main methods for getting parts: `GetPart`, `GetParts`, `GetPartFromPort`, and `GetPartsFromPort`. 
+The plural variations will return an array instead of a single part. These methods are global in all microcontroller code execution sandboxes.
 
 - `GetPart(s)` will look through parts that are directly connected _but not_ through ports.
 
@@ -57,7 +60,10 @@ Gets the connected port of the specified ID.
 - `GetPorts(number?) → { Port }`
 Gets all the connected ports of the specified ID. If no ID is specified it will get all connected ports.
 
-For a list of parts with their configurations and methods, documentation on modules that you can `require`, and type information, check out [`Arvid's wiki`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/)
+For a list of parts with their configurations and methods, documentation on modules that you can `require`, and type information, 
+check out [`Arvid's wiki`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/)
+
+Note: once your code stops running and you have not binded any event listeners, the microcontroller will _shut off_. This can be an issue when making ui, as the game will delete your ui elements, and can be alleviated by simply adding `coroutine.new()` at the end of your code.
 
 ## Examples
 ```lua

@@ -5,4 +5,4 @@ This part of the tutorial will demonstrate more specific Pilot.Lua usage, such a
 🚧 WIP, here be dragons 🐉
 
 ## Contents
-- [UI](./UI.md)
+- [UI](./ui.md)
