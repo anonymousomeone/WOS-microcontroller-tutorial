@@ -63,7 +63,7 @@ Gets all the connected ports of the specified ID. If no ID is specified it will 
 For a list of parts with their configurations and methods, documentation on modules that you can `require`, and type information, 
 check out [`Arvid's wiki`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/)
 
-Note: once your code stops running and you have not binded any event listeners, the microcontroller will _shut off_. This can be an issue when making ui, as the game will delete your ui elements, and can be alleviated by simply adding `coroutine.new()` at the end of your code.
+Note: once your code stops running and you have not binded any event listeners, the microcontroller will _shut off_. This can be an issue when making ui, as the game will delete your ui elements, and can be alleviated by simply adding `coroutine.yield()` at the end of your code.
 
 ## Examples
 ```lua
