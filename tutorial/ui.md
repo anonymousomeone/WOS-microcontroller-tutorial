@@ -1,6 +1,8 @@
 # UI
 
-In WOS, you can make ui elements using Instance.new, however it must be through a [`Screen`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Screen) or an [`ARController`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/ARController), and you must parent the element to the _canvas_ of the part.
+In WOS, you can make ui elements using Instance.new, however it must be through a [`Screen`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/Screen) or an [`ARController`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/ARController), and you must parent the element to the _canvas_ of the part. For more info on each element, see [`Roblox's ui guide`](https://create.roblox.com/docs/ui)
+
+Note: at the time of writing, TextBoxes do not sync their values to serverside (where micro code runs). Use alternative methods of input instead (keyboard, microphone)
 
 ![Screen demo](https://files.catbox.moe/o39706.png)
 
