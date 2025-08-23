@@ -4,13 +4,15 @@
 This guide assumes a basic level of lua/u programming ability and WOS knowledge!
 
 ## Contents
-- [Wiring](#wiring)
-- [API](#api)
-- [Examples](#examples)
-- [Practical Usage](#practical-usage)
-  1. Chat controlled turret
-  2. Chat controlled missile
-  3. Automated reactor
+- [Intro](#intro)
+	- [Wiring](#wiring)
+	- [API](#api)
+	- [Examples](#examples)
+	- [Practical Usage](#practical-usage)
+- [Advanced](./tutorial/advanced.md)
+
+
+# Intro
 
 ## Wiring
 To allow your code to interact with the game world, you must first obtain a [`PilotObject`](<https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/objects/PilotObject>) instance. 
