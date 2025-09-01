@@ -7,7 +7,7 @@ Note: at the time of writing, TextBoxes do not sync their values to serverside (
 ![Screen demo](https://files.catbox.moe/o39706.png)
 
 ```lua
-local screen = GetPart("Screen")
+local screen = Network:GetPart("Screen")
 -- we need to parent ui instances to canvas (wont render otherwise)
 -- if you wanted to use an arcontroller, simply replace screen with it
 -- local canvas = arcontroller:GetCanvas("2D")
@@ -24,7 +24,7 @@ To make parts in 3D space (arcontroller), first Instance.new a Part then parent 
 ![ARController demo](https://files.catbox.moe/reatce.png)
 
 ```lua
-local arc = GetPart("ARController")
+local arc = Network:GetPart("ARController")
 local canvas = arc:GetCanvas("3D")
 
 -- spawn a part at y = 1024 (this is the height of the top of the baseplate)
@@ -45,11 +45,11 @@ This project will demonstrate how to use a [`LifeSensor`](https://arvidsilverloc
 ![Targetting ui](https://files.catbox.moe/goyxpz.png)
 
 ```lua
-local SCREEN = GetPart("Screen")
+local SCREEN = Network:GetPart("Screen")
 local CANVAS = SCREEN:GetCanvas("2D")
-local LIFESENSOR = GetPart("LifeSensor")
-local GUNS = GetParts("Gun")
-local GYRO = GetPart("Gyro")
+local LIFESENSOR = Network:GetPart("LifeSensor")
+local GUNS = Network:GetParts("Gun")
+local GYRO = Network:GetPart("Gyro")
 
 local function fire()
 	for _, gun in GUNS do
