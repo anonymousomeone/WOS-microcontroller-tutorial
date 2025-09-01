@@ -31,33 +31,35 @@ you can use [`Routers`](https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/obj
 ![Figure 3](https://files.catbox.moe/eupfeo.png)
 
 ## API
-There are four main methods for getting parts: `GetPart`, `GetParts`, `GetPartFromPort`, and `GetPartsFromPort`. 
+There are four main methods for getting parts: `Network:GetPart`, `Network:GetParts`, `Network:GetPartFromPort`, and `Network:GetPartsFromPort`. 
 The plural variations will return an array instead of a single part. These methods are global in all microcontroller code execution sandboxes.
 
-- `GetPart(s)` will look through parts that are directly connected _but not_ through ports.
+- `Network:GetPart(s)` will look through parts that are directly connected _but not_ through ports.
 
-- `GetPart(s)FromPort` will _only_ look through parts that are connected through ports.
+- `Network:GetPart(s)FromPort` will _only_ look through parts that are connected through ports.
 
-These two special methods `GetPort` and `GetPorts` will return the port of the specified PortID, looking through all ports which are _directly connected_.
+These two special methods `Network:GetPort` and `Network:GetPorts` will return the port of the specified PortID, looking through all ports which are _directly connected_.
+
+For more documentation on ethernet networks: https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/types/Network
 
 #### Function signatures:
 
-- `GetPartFromPort(Port | number, string) → PilotObject`
+- `Network:GetPartFromPort(Port | number, string) → PilotObject`
 Gets a part of the specified type from any port of the specified ID.
 
-- `GetPartsFromPort(Port | number, string) → { PilotObject }`
+- `Network:GetPartsFromPort(Port | number, string) → { PilotObject }`
 Gets all the parts of the specified type from any port of the specified ID.
 
-- `GetPart(string) → PilotObject`
+- `Network:GetPart(string) → PilotObject`
 Gets a part of the specified type from any connected parts.
 
-- `GetParts(string) → { PilotObject }`
+- `Network:GetParts(string) → { PilotObject }`
 Gets all the parts of the specified type from any connected parts.
 
-- `GetPort(number) → Port`
+- `Network:GetPort(number) → Port`
 Gets the connected port of the specified ID.
 
-- `GetPorts(number?) → { Port }`
+- `Network:GetPorts(number?) → { Port }`
 Gets all the connected ports of the specified ID. If no ID is specified it will get all connected ports.
 
 For a list of parts with their configurations and methods, documentation on modules that you can `require`, and type information, 
@@ -69,12 +71,12 @@ Note: once your code stops running and you have not binded any event listeners, 
 ```lua
 -- Examples
 -- This code will work with all figures 1-3
-local switch = GetPart("Switch")
-local microphone = GetPartFromPort(1, "Microphone")
+local switch = Network:GetPart("Switch")
+local microphone = Network:GetPartFromPort(1, "Microphone")
 
 -- Alternatively, you can pass in a Port into GetPart(s)FromPort:
-local port = GetPort(1)
-local microphone = GetPartFromPort(port, "Microphone")
+local port = Network:GetPort(1)
+local microphone = Network:GetPartFromPort(port, "Microphone")
 ```
 
 ## Practical Usage
@@ -89,8 +91,8 @@ This project will demonstrate how to use a [`Microphone`](https://arvidsilverloc
 - Gyro: **TriggerWhenSeeked** is **true**
 
 ```lua
-local microphone = GetPart("Microphone")
-local gyro = GetPart("Gyro")
+local microphone = Network:GetPart("Microphone")
+local gyro = Network:GetPart("Gyro")
 
 -- NOTE: this does not filter for messages from you specifically, 
 -- nor does it check for a prefix.
@@ -119,10 +121,10 @@ This project will demonstrate using a [`Microphone`](https://arvidsilverlock.git
 -- see https://arvidsilverlock.github.io/Pilot.lua-Luau-LSP/modules/players
 local players = require("players")
 
-local microphone = GetPart("Microphone")
-local triggerswitch = GetPart("TriggerSwitch")
-local switch = GetPart("Switch")
-local gyro = GetPart("Gyro")
+local microphone = Network:GetPart("Microphone")
+local triggerswitch = Network:GetPart("TriggerSwitch")
+local switch = Network:GetPart("Switch")
+local gyro = Network:GetPart("Gyro")
 
 local WHITELIST = {
 	-- replace with your username (case sensitive)...
@@ -177,11 +179,11 @@ This project will demonstrate using a [`Microcontroller`](https://arvidsilverloc
 - Dispenser: **Filter** is **Uranium**
 
 ```lua
-local MELTER_SWITCH = GetPart("Switch") or warn("NO MELTER_SWITCH");
-local WATER_TANK = GetPart("Tank") or warn("NO WATER_TANK");
-local SORTER = GetPart("Sorter") or warn("NO SORTER");
-local URANIUM_BIN = GetPart("Bin") or warn("NO BIN");
-local SYSTEMS = GetParts("Port");
+local MELTER_SWITCH = Network:GetPart("Switch") or warn("NO MELTER_SWITCH");
+local WATER_TANK = Network:GetPart("Tank") or warn("NO WATER_TANK");
+local SORTER = Network:GetPart("Sorter") or warn("NO SORTER");
+local URANIUM_BIN = Network:GetPart("Bin") or warn("NO BIN");
+local SYSTEMS = Network:GetParts("Port");
 
 local GOAL_TEMP = 1000;
 local REFUEL_THRESHOLD = 0.5;
@@ -196,9 +198,9 @@ type System = {
 
 -- every "System" is a port, reactor, polysilicon, dispenser combo
 for _, system in SYSTEMS do
-	local disp = GetPartFromPort(system, "Dispenser") or warn("NO DISPENSER");
-	local reactor = GetPartFromPort(system, "Reactor") or warn("NO REACTOR");
-	local poly = GetPartFromPort(system, "Polysilicon") or warn("NO POLYSILICON");
+	local disp = Network:GetPartFromPort(system, "Dispenser") or warn("NO DISPENSER");
+	local reactor = Network:GetPartFromPort(system, "Reactor") or warn("NO REACTOR");
+	local poly = Network:GetPartFromPort(system, "Polysilicon") or warn("NO POLYSILICON");
 
 	if not reactor then continue end
 
